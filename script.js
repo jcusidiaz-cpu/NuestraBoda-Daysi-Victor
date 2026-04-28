@@ -3,7 +3,7 @@
 ══════════════════════════════════════════════════════════ */
 
 // 1. Pega aquí la URL de tu Google Apps Script (ver README.md)
-const SHEETS_URL = "https://script.google.com/macros/s/AKfycbyj5_Rh2fX9OmrI8eY-9GyXm3r2S2KWqh5w_kL4cbQkELhXF18ceX4ttc6-guO8DKB6/exec";
+const SHEETS_URL = "https://script.google.com/macros/s/AKfycbzst8Fc8PRkXF7zQIdZS2uKJAOYxSzmBXp9gpe-Rys6tawIEyHiVQlnCBdt1j9cD1jA/exec";
 
 /* ══════════════════════════════════════════════════════════
    PARÁMETROS DE LA URL
