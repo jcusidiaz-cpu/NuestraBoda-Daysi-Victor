@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Invitación D &amp; V</title>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; }
+
+    body {
+      min-height: 100dvh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #07112b;
+      overflow: hidden;
+      font-family: Georgia, serif;
+      padding: env(safe-area-inset-top)
+               env(safe-area-inset-right)
+               env(safe-area-inset-bottom)
+               env(safe-area-inset-left);
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: -15%;
+      background: url("tarjeta/tarjeta.png") center / cover no-repeat;
+      filter: blur(45px) brightness(0.4) saturate(1.5);
+      opacity: 0.5;
+      z-index: 0;
+    }
+
+    .card {
+      position: relative;
+      z-index: 1;
+      overflow: hidden;
+      animation: cardIn 0.85s cubic-bezier(.22,.61,.36,1) both;
+      aspect-ratio: 1240 / 1748;
+      height: 100dvh;
+      max-height: 100dvh;
+      width: auto;
+      max-width: 100vw;
+      border-radius: 0;
+      box-shadow: none;
+    }
+
+    @media (min-width: 600px) {
+      .card {
+        height: min(90dvh, 800px);
+        max-width: min(90vw, 568px);
+        border-radius: 20px;
+        box-shadow:
+          0 0 0 1px rgba(212,160,140,0.20),
+          0 12px 30px rgba(0,0,0,0.60),
+          0 50px 100px rgba(0,0,0,0.45);
+      }
+    }
+
+    @media (max-height: 500px) and (orientation: landscape) {
+      .card {
+        height: 96dvh;
+        border-radius: 10px;
+        box-shadow: 0 4px 30px rgba(0,0,0,0.5);
+      }
+    }
+
+    @keyframes cardIn {
+      from { opacity: 0; transform: scale(0.94) translateY(16px); }
+      to   { opacity: 1; transform: scale(1)    translateY(0); }
+    }
+
+    .card img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      background: #07112b;
+      display: block;
+      transition: filter 0.9s ease, transform 0.9s ease;
+      user-select: none;
+      -webkit-user-drag: none;
+    }
+
+    .card.open img {
+      filter: brightness(0.3) blur(6px);
+      transform: scale(1.06);
+    }
+
+    video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      background: #07112b;
+      opacity: 0;
+      transition: opacity 1.3s ease;
+      pointer-events: none;
+    }
+    .card.open video { opacity: 1; }
+
+    .btn {
+      position: absolute;
+      inset: 0;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .btn:focus-visible {
+      outline: 2px solid rgba(255,200,180,0.5);
+      outline-offset: -8px;
+    }
+
+    .ripple {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255, 190, 160, 0.28);
+      transform: scale(0);
+      animation: rippleAnim 0.75s linear forwards;
+      pointer-events: none;
+    }
+    @keyframes rippleAnim {
+      to { transform: scale(4.5); opacity: 0; }
+    }
+
+    /* ── Nombre del invitado flotante ── */
+    .nombre-tag {
+      position: absolute;
+      bottom: 24px;
+      left: 0; right: 0;
+      text-align: center;
+      font-family: 'Great Vibes', cursive, Georgia, serif;
+      font-size: clamp(22px, 6vw, 38px);
+      color: rgba(255,255,255,0.85);
+      text-shadow: 0 2px 12px rgba(0,0,0,0.6);
+      letter-spacing: 1px;
+      pointer-events: none;
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity 1s ease 0.5s, transform 1s ease 0.5s;
+      z-index: 2;
+    }
+    /* Se hace visible junto con la card */
+    .nombre-tag.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    /* Se oculta cuando se abre */
+    .card.open .nombre-tag {
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+  </style>
+
+  <!-- Fuente script para el nombre (misma que index.html) -->
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <div class="card" id="card">
+
+    <img src="tarjeta/tarjeta.png" alt="Invitación D y V" draggable="false">
+
+    <video id="video" playsinline preload="metadata">
+      <source src="tarjeta/tarjeta.mp4" type="video/mp4">
+    </video>
+
+    <!-- Nombre del invitado sobre la tarjeta -->
+    <div class="nombre-tag" id="nombre-tag"></div>
+
+    <button class="btn" id="btn" aria-label="Abrir invitación"></button>
+
+  </div>
+
+  <script>
+    /* ── 1. Leer los parámetros de la URL ── */
+    const params  = new URLSearchParams(window.location.search);
+    const familia = params.get("familia") || "";
+    const pases   = params.get("pases")   || "1";
+
+    /* ── 2. Mostrar nombre del invitado en la tarjeta ── */
+    const tag = document.getElementById("nombre-tag");
+    if (familia) {
+      tag.textContent = familia;
+      /* pequeño delay para que aparezca suave tras la animación de entrada */
+      setTimeout(() => tag.classList.add("show"), 600);
+    }
+
+    /* ── 3. Construir la URL de destino CON los parámetros ── */
+    const destino = "index.html?familia=" + encodeURIComponent(familia)
+                                + "&pases=" + encodeURIComponent(pases);
+
+    /* ── 4. Lógica del botón ── */
+    const card  = document.getElementById("card");
+    const video = document.getElementById("video");
+    const btn   = document.getElementById("btn");
+
+    btn.addEventListener("click", function(e) {
+
+      /* Ripple */
+      const rect = card.getBoundingClientRect();
+      const size = Math.max(rect.width, rect.height) * 0.65;
+      const rpl  = document.createElement("span");
+      rpl.className = "ripple";
+      Object.assign(rpl.style, {
+        width:  size + "px",
+        height: size + "px",
+        left:   (e.clientX - rect.left  - size / 2) + "px",
+        top:    (e.clientY - rect.top   - size / 2) + "px"
+      });
+      card.appendChild(rpl);
+      setTimeout(() => rpl.remove(), 800);
+
+      /* Abrir tarjeta y reproducir vídeo */
+      card.classList.add("open");
+      video.play().catch(() => {});
+
+      /* ── Redirigir CONSERVANDO familia y pases ── */
+      setTimeout(() => {
+        window.location.href = destino;
+      }, 5000);
+    });
+  </script>
+
+</body>
+</html>

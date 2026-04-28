@@ -1,0 +1,384 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Boda Victor &amp; Daysi · 25.07.2026</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="hoja">
+
+  <!-- ══════════════════════════════
+       1. PORTADA
+  ══════════════════════════════ -->
+  <div class="portada">
+    <img src="img/flores.png" alt="" class="flores-img seq" data-delay="200">
+    <div class="portada-body">
+      <p  class="pre-titulo    seq" data-delay="700">con la gracia de Dios</p>
+      <h1 class="tit-principal seq" data-delay="1000">¡Nos Casamos!</h1>
+      <div class="nombres-bloque seq" data-delay="1400">
+        <span class="nombre">Daysi</span>
+        <span class="amp">&amp;</span>
+        <span class="nombre">Victor</span>
+      </div>
+      <p class="fecha-portada seq" data-delay="1900">25 · 07 · 2026</p>
+      <div class="ornam seq" data-delay="2100"><span></span><i>◆</i><span></span></div>
+      <div class="novios-wrap seq" data-delay="2300">
+        <img src="img/novios.jpg" alt="" class="icon-blush">
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════
+       2. REPRODUCTOR
+  ══════════════════════════════ -->
+  <div class="player seq" data-delay="2500">
+    <p class="player-label">♪ nuestra canción</p>
+    <div class="player-track-wrap">
+      <div class="player-track" id="track">
+        <div class="player-fill" id="fill"></div>
+        <div class="player-dot"  id="dot"></div>
+      </div>
+      <span class="player-time" id="tiempo">0:00 / 0:00</span>
+    </div>
+    <div class="player-btns">
+      <button class="pbtn" onclick="retroceder()">&#9664;&#9664;</button>
+      <button class="pbtn pbtn-play" onclick="togglePlay()" id="playBtn">&#9654;</button>
+      <button class="pbtn" onclick="avanzar()">&#9654;&#9654;</button>
+    </div>
+    <audio id="audio" src="audio/musica.mp3"></audio>
+  </div>
+
+  <!-- ══════════════════════════════
+       3. FRASE
+  ══════════════════════════════ -->
+  <section class="sec seq" data-delay="2700">
+    <div class="paloma-wrap seq" data-delay="2300">
+      <img src="img/paloma.png" alt="" class="icon-blush">
+    </div>
+    <div class="ornam"><span></span><i>◆</i><span></span></div>
+    <p class="frase">
+      Hay momentos en la vida que son especiales por sí solos,<br>
+      pero compartirlos con quienes quieres<br>
+      <em>los convierte en inolvidables.</em>
+    </p>
+    <div class="ornam"><span></span><i>◆</i><span></span></div>
+  </section>
+
+  <!-- ══════════════════════════════
+       4. FAMILIAS
+  ══════════════════════════════ -->
+  <section class="sec seq" data-delay="2900">
+    <h2 class="sec-titulo">Con la bendición de Dios<br>y nuestros queridos padres</h2>
+
+    <!-- Padres -->
+    <div class="familia-card">
+      <div class="fam-icon-wrap">
+        <img src="img/padres.png" alt="" class="icon-blush">
+      </div>
+      <div class="familias-grid">
+        <div class="fam-bloque">
+          <p class="fam-rol">Padres de la Novia</p>
+          <p class="fam-nombre">"papá"</p>
+          <p class="fam-nombre">"mamá"</p>
+        </div>
+        <div class="fam-sep">◆</div>
+        <div class="fam-bloque">
+          <p class="fam-rol">Padres del Novio</p>
+          <p class="fam-nombre">Sabino Cusi Escobedo</p>
+          <p class="fam-nombre">Eliza Diaz Balladares</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="ornam thin"><span></span></div>
+
+    <!-- Padrinos -->
+    <div class="familias-grid padrinos-row">
+      <div class="padrino-card">
+        <div class="fam-icon-wrap small">
+          <img src="img/padrinos.png" alt="" class="icon-blush">
+        </div>
+        <p class="fam-rol">Padrinos Mayor</p>
+        <p class="fam-nombre">"padrino"</p>
+        <p class="fam-nombre">"madrina"</p>
+      </div>
+      <div class="fam-sep">◆</div>
+      <div class="padrino-card">
+        <div class="fam-icon-wrap small">
+          <img src="img/anillos.png" alt="" class="icon-blush">
+        </div>
+        <p class="fam-rol">Padrinos de Arras</p>
+        <p class="fam-nombre">"padrino"</p>
+        <p class="fam-nombre">"madrina"</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════
+       5. FECHA + CONTADOR
+  ══════════════════════════════ -->
+  <section class="sec sec-fecha seq" data-delay="3100">
+    <p class="inv-texto">Nos complace invitarte a nuestra boda</p>
+    <div class="fecha-bloque">
+      <p class="fecha-mes">Julio</p>
+      <p class="fecha-dia">25</p>
+      <p class="fecha-dow">Sábado</p>
+      <p class="fecha-an">2026</p>
+    </div>
+    <div class="ornam dark"><span></span><i>◆</i><span></span></div>
+    <p class="cuenta-label">Faltan</p>
+    <div class="contador">
+      <div class="cd-item"><span id="cd-d">--</span><small>días</small></div>
+      <div class="cd-sep">:</div>
+      <div class="cd-item"><span id="cd-h">--</span><small>hrs</small></div>
+      <div class="cd-sep">:</div>
+      <div class="cd-item"><span id="cd-m">--</span><small>min</small></div>
+      <div class="cd-sep">:</div>
+      <div class="cd-item"><span id="cd-s">--</span><small>seg</small></div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════
+       6. LUGARES DEL EVENTO
+  ══════════════════════════════ -->
+  <section class="sec seq" data-delay="3300">
+    <h2 class="sec-titulo">Lugares del Evento</h2>
+    <div class="lugares-grid">
+
+      <div class="lugar-card">
+        <div class="lugar-icon-wrap">
+          <img src="img/iglesia.png" alt="" class="icon-blush">
+        </div>
+        <p class="lugar-nombre">Ceremonia Religiosa</p>
+        <p class="lugar-dir">Iglesia de La Recoleta<br>Cusco, Perú</p>
+        <a class="lugar-mapa"
+           href="https://maps.app.goo.gl/g1rvAWWHe4KDbAaaA"
+           target="_blank">
+          <img src="img/ubicacion.png" alt="" class="icon-pin">
+          Ver en Google Maps
+        </a>
+      </div>
+
+      <div class="lugar-card">
+        <div class="lugar-icon-wrap">
+          <img src="img/resepcion.png" alt="" class="icon-blush">
+        </div>
+        <p class="lugar-nombre">Recepción</p>
+        <p class="lugar-dir">Centro de Convenciones Casa Real<br>Av. Huayrurupata 1817</p>
+        <a class="lugar-mapa"
+           href="https://maps.app.goo.gl/rJcaRHcmjVnV8CeN6"
+           target="_blank">
+          <img src="img/ubicacion.png" alt="" class="icon-pin">
+          Ver en Google Maps
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════
+       7. DRESS CODE
+  ══════════════════════════════ -->
+  <section class="sec seq" data-delay="3500">
+    <h2 class="sec-titulo">Dress Code</h2>
+    <p class="dc-tag">F O R M A L</p>
+    <div class="dc-grid">
+      <div class="dc-item">
+        <span class="dc-ico">♀</span>
+        <p class="dc-tit">Damas</p>
+        <p class="dc-desc">Vestido largo<br><em>(no blanco)</em></p>
+      </div>
+      <div class="dc-item">
+        <span class="dc-ico">♂</span>
+        <p class="dc-tit">Caballeros</p>
+        <p class="dc-desc">Traje formal</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════
+       8. ITINERARIO
+  ══════════════════════════════ -->
+  <section class="sec seq" data-delay="3700">
+    <h2 class="sec-titulo">Programa del Día</h2>
+    <div class="timeline">
+
+      <div class="tl-item">
+        <div class="tl-hora">16:00</div>
+        <div class="tl-eje"><div class="tl-dot"></div></div>
+        <div class="tl-info">
+          <div class="tl-icon-wrap">
+            <img src="img/iglesia.png" alt="" class="icon-blush">
+          </div>
+          <p class="tl-ev">Ceremonia Religiosa</p>
+          <p class="tl-lugar">Iglesia de La Recoleta</p>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-hora">18:00</div>
+        <div class="tl-eje"><div class="tl-dot"></div></div>
+        <div class="tl-info">
+          <div class="tl-icon-wrap">
+            <img src="img/resepcion.png" alt="" class="icon-blush">
+          </div>
+          <p class="tl-ev">Recepción</p>
+          <p class="tl-lugar">Av. Huayrurupata 1817<br>Casa Real</p>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-hora">20:00</div>
+        <div class="tl-eje"><div class="tl-dot"></div></div>
+        <div class="tl-info">
+          <div class="tl-icon-wrap">
+            <img src="img/cena.png" alt="" class="icon-blush">
+          </div>
+          <p class="tl-ev">Cena</p>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-hora">21:00</div>
+        <div class="tl-eje"><div class="tl-dot"></div></div>
+        <div class="tl-info">
+          <div class="tl-icon-wrap">
+            <img src="img/bailando.png" alt="" class="icon-blush">
+          </div>
+          <p class="tl-ev">Baile</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════
+       9. REGALOS
+  ══════════════════════════════ -->
+  <section class="sec seq" data-delay="3900">
+    <h2 class="sec-titulo">Regalos</h2>
+    <p class="regalo-intro">El mejor regalo es que estés presente. Si deseas obsequiarnos, tienes estas opciones:</p>
+    <div class="regalo-grid">
+      <div class="regalo-item">
+        <p class="regalo-ico">🏦</p>
+        <p class="regalo-label">Cuenta bancaria</p>
+        <p class="regalo-dato">1234567890</p>
+      </div>
+      <div class="regalo-item">
+        <p class="regalo-ico">💳</p>
+        <p class="regalo-label">Yape / Plin</p>
+        <p class="regalo-dato">+51 999 999 999</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════
+       10. CONFIRMACIÓN PERSONALIZADA
+  ══════════════════════════════ -->
+  <section class="sec sec-confirm seq" data-delay="4100">
+
+    <!-- Pase del invitado (se llena desde la URL) -->
+    <div class="pase-card">
+      <p class="pase-etiq">✦ Pase para</p>
+      <p class="pase-nombre" id="pase-nombre">Invitado</p>
+      <p class="pase-cupo"  id="pase-cupo">— personas</p>
+    </div>
+
+    <h2 class="sec-titulo" style="margin-top:32px">Confirmación de Asistencia</h2>
+
+    <!-- Estado: formulario / enviando / enviado / error -->
+    <div id="form-wrap">
+
+      <!-- Paso 1: ¿asistes? -->
+      <div id="paso-1">
+        <p class="form-pregunta">¿Confirmas tu asistencia?</p>
+        <div class="asiste-btns">
+          <button class="asiste-btn" id="btn-si"  onclick="elegirAsistencia(true)">
+            ✓ &nbsp;Sí, asistimos
+          </button>
+          <button class="asiste-btn asiste-no" id="btn-no" onclick="elegirAsistencia(false)">
+            ✗ &nbsp;No podemos ir
+          </button>
+        </div>
+      </div>
+
+      <!-- Paso 2: cuántos + nombres (visible si asiste=sí) -->
+      <div id="paso-2" class="oculto">
+        <p class="form-pregunta">¿Cuántos asistirán?</p>
+        <div class="cant-wrap">
+          <button class="cant-btn" onclick="cambiarCant(-1)">−</button>
+          <span class="cant-num" id="cant-num">1</span>
+          <button class="cant-btn" onclick="cambiarCant(+1)">+</button>
+        </div>
+
+        <div id="nombres-wrap"></div>
+
+        <div class="campo-wrap">
+          <label class="campo-label">Teléfono de contacto</label>
+          <input class="campo-input" id="f-tel" type="tel" placeholder="+51 999 999 999">
+        </div>
+
+        <div class="campo-wrap">
+          <label class="campo-label">Mensaje para los novios <span class="opcional">(opcional)</span></label>
+          <textarea class="campo-input campo-ta" id="f-msg" rows="3" placeholder="Escribe algo bonito…"></textarea>
+        </div>
+
+        <button class="submit-btn" onclick="enviarFormulario()">
+          Confirmar asistencia ✦
+        </button>
+      </div>
+
+      <!-- Paso 2b: no asiste -->
+      <div id="paso-2b" class="oculto">
+        <p class="frase" style="margin:0 auto 20px">Qué lástima que no puedas acompañarnos. ¡Siempre estarás en nuestro corazón!</p>
+        <div class="campo-wrap">
+          <label class="campo-label">Mensaje para los novios <span class="opcional">(opcional)</span></label>
+          <textarea class="campo-input campo-ta" id="f-msg-no" rows="3" placeholder="Déjanos un mensaje…"></textarea>
+        </div>
+        <button class="submit-btn submit-no" onclick="enviarNoAsiste()">
+          Enviar mensaje ✦
+        </button>
+      </div>
+
+      <!-- Estado enviando -->
+      <div id="estado-enviando" class="oculto estado-msg">
+        <div class="spinner"></div>
+        <p>Enviando confirmación…</p>
+      </div>
+
+      <!-- Estado enviado -->
+      <div id="estado-ok" class="oculto estado-msg">
+        <p class="estado-ico">✦</p>
+        <p class="estado-titulo">¡Confirmado!</p>
+        <p class="estado-sub">Nos alegra mucho contar contigo. ¡Hasta pronto!</p>
+      </div>
+
+      <!-- Estado error -->
+      <div id="estado-error" class="oculto estado-msg">
+        <p class="estado-ico" style="color:var(--blush)">✗</p>
+        <p class="estado-titulo">Algo salió mal</p>
+        <p class="estado-sub">Por favor escríbenos directamente.<br>¡Queremos verte ahí!</p>
+      </div>
+
+    </div><!-- /#form-wrap -->
+  </section>
+
+  <!-- ══════════════════════════════
+       11. CIERRE
+  ══════════════════════════════ -->
+  <div class="cierre seq" data-delay="4300">
+    <div class="ornam"><span></span><i>◆</i><span></span></div>
+    <img src="img/sello.png" alt="" class="sello" data-delay="200">
+    <h2 class="cierre-titulo">¡Te Esperamos!</h2>
+    <p class="cierre-fecha">25 · 07 · 2026</p>
+  </div>
+
+</div><!-- /.hoja -->
+
+<script src="script.js"></script>
+</body>
+</html>
