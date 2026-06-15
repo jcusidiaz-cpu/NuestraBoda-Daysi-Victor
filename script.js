@@ -41,18 +41,62 @@ function fmt(s) {
   return Math.floor(s / 60) + ":" + String(Math.floor(s % 60)).padStart(2, "0");
 }
 
+function updatePlayBtnUI() {
+  if (!btn) return;
+  const iconPlay = btn.querySelector(".icon-play");
+  const iconPause = btn.querySelector(".icon-pause");
+  if (audio.paused) {
+    if (iconPlay) iconPlay.style.display = "block";
+    if (iconPause) iconPause.style.display = "none";
+    btn.classList.remove("playing");
+  } else {
+    if (iconPlay) iconPlay.style.display = "none";
+    if (iconPause) iconPause.style.display = "block";
+    btn.classList.add("playing");
+  }
+}
+
 window.addEventListener("load", () => {
   audio.play()
-    .then(() => { btn.innerHTML = "&#10074;&#10074;"; })
-    .catch(() => { /* navegador bloqueó autoplay → botón ▶ listo */ });
+    .then(() => { updatePlayBtnUI(); })
+    .catch(() => { /* navegador bloqueó autoplay */ });
 });
 
 function togglePlay() {
-  if (audio.paused) { audio.play(); btn.innerHTML = "&#10074;&#10074;"; }
-  else              { audio.pause(); btn.innerHTML = "&#9654;"; }
+  if (audio.paused) {
+    audio.play();
+  } else {
+    audio.pause();
+  }
+  updatePlayBtnUI();
 }
+
 function retroceder() { audio.currentTime = Math.max(0, audio.currentTime - 10); }
 function avanzar()    { audio.currentTime = Math.min(audio.duration || 0, audio.currentTime + 10); }
+
+let isShuffling = false;
+function toggleShuffle() {
+  isShuffling = !isShuffling;
+  const shuffleBtn = document.getElementById("shuffleBtn");
+  if (shuffleBtn) {
+    if (isShuffling) shuffleBtn.classList.add("active");
+    else shuffleBtn.classList.remove("active");
+  }
+}
+
+let isRepeating = false;
+function toggleRepeat() {
+  isRepeating = !isRepeating;
+  audio.loop = isRepeating;
+  const repeatBtn = document.getElementById("repeatBtn");
+  if (repeatBtn) {
+    if (isRepeating) repeatBtn.classList.add("active");
+    else repeatBtn.classList.remove("active");
+  }
+}
+
+audio.addEventListener("play", updatePlayBtnUI);
+audio.addEventListener("pause", updatePlayBtnUI);
 
 audio.addEventListener("timeupdate", () => {
   const pct = audio.duration ? (audio.currentTime / audio.duration) * 100 : 0;
@@ -60,8 +104,9 @@ audio.addEventListener("timeupdate", () => {
   dot.style.left   = pct + "%";
   tiempoEl.textContent = fmt(audio.currentTime) + " / " + fmt(audio.duration);
 });
+
 audio.addEventListener("ended", () => {
-  btn.innerHTML = "&#9654;";
+  updatePlayBtnUI();
   fill.style.width = "0%"; dot.style.left = "0%";
 });
 
@@ -75,7 +120,6 @@ function seek(e) {
   const r = track.getBoundingClientRect();
   audio.currentTime = Math.max(0, Math.min(1, (e.clientX - r.left) / r.width)) * (audio.duration || 0);
 }
-
 /* ══════════════════════════════════════════════════════════
    CUENTA REGRESIVA
 ══════════════════════════════════════════════════════════ */
