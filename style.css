@@ -2,15 +2,16 @@
    VARIABLES
 ══════════════════════════════════════ */
 :root {
-  --navy:    #1a2740;
-  --gold:    #c9a84c;
-  --gold-lt: #e8d08a;
-  --blush:   #c08081;
-  --blush-lt:#e8c4c4;
+  --navy:    #16243d; /* Sharp, deep royal navy */
+  --gold:    #d0af58; /* Glowing, warm refined gold */
+  --gold-lt: #f4ebd0; /* Soft silk light gold */
+  --blush:   #c98a8b; /* Lighter, romantic blush rose */
+  --blush-lt:#f5dede; /* Clean, glowing baby blush */
   --white:   #ffffff;
-  --off:     #fafafa;
-  --text:    #2a2420;
-  --text-lt: #8a7e78;
+  --off:     #fcfaf6; /* Glowing, warm champagne off-white instead of cold gray */
+  --text:    #221c19; /* Sharp espresso charcoal for high contrast reading */
+  --text-lt: #786b63; /* Crisp, readable lighter text */
+  --bg-page: #fbf9f5; /* Bright warm cream page background, pure and luxury */
 
   --ff-title:  'Cinzel', serif;
   --ff-script: 'Great Vibes', cursive;
@@ -20,13 +21,15 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
-  background: #f0ebe3;
+  background: var(--bg-page);
   min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: flex-start;
   font-family: var(--ff-body);
   color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 /* ══════════════════════════════════════
@@ -37,7 +40,9 @@ body {
   max-width: 620px;
   background: var(--white);
   text-align: center;
-  box-shadow: 0 0 60px rgba(0,0,0,.10), 0 2px 8px rgba(0,0,0,.06);
+  box-shadow: 0 10px 40px rgba(22, 36, 61, 0.05), 0 2px 12px rgba(22, 36, 61, 0.02);
+  border-left: 1px solid rgba(208, 175, 88, 0.08);
+  border-right: 1px solid rgba(208, 175, 88, 0.08);
 }
 
 /* ══════════════════════════════════════
@@ -378,6 +383,7 @@ body {
 .pbtn-play:hover svg {
   fill: var(--navy); /* Icono cambia a azul marino */
 }
+
 /* ══════════════════════════════════════
    SECCIONES BASE
 ══════════════════════════════════════ */
@@ -400,22 +406,22 @@ body {
 /* 3. FRASE */
 /* Paloma — sobre fondo blanco: icono navy */
 .paloma-wrap {
-  width: 90px;
-  height: 90px;
+  width: 100px;
+  height: 100px;
   margin: 0 auto;
   background: #ffffff;
   border-radius: 50%;
-  padding: 14px;
-  border: 2px solid #d4af37; /* dorado */
-  box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+  padding: 12px;
+  border: 2.5px solid var(--gold); /* dorado nítido */
+  box-shadow: 0 6px 20px rgba(22, 36, 61, 0.08);
 }
 .frase {
   font-family: var(--ff-body);
   font-style: italic;
-  font-size: 18px;
-  line-height: 1.9;
+  font-size: 19px;
+  line-height: 1.95;
   color: var(--text-lt);
-  max-width: 400px;
+  max-width: 440px;
   margin: 0 auto;
 }
 
@@ -424,22 +430,24 @@ body {
 ══════════════════════════════════════ */
 .familia-card {
   background: var(--off);
-  border: 1px solid rgba(201,168,76,.15);
-  padding: 20px;
+  border: 1px solid rgba(208, 175, 88, 0.16);
+  padding: 24px;
   margin-bottom: 8px;
 }
 .fam-icon-wrap {
-  width: 74px; height: 74px;
+  width: 86px;
+  height: 86px;
   background: #ffffff;
   border-radius: 50%;
-  padding: 12px;
+  padding: 10px;
   margin: 0 auto 16px;
-  border: 2px solid #d4af37; /* dorado */
-  box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+  border: 2.5px solid var(--gold); /* dorado nítido */
+  box-shadow: 0 6px 20px rgba(22, 36, 61, 0.08);
 }
 .fam-icon-wrap.small {
-  width: 68px; height: 68px;
-  padding: 9px;
+  width: 78px;
+  height: 78px;
+  padding: 8px;
   margin: 0 auto 12px;
 }
 
@@ -526,24 +534,27 @@ body {
 ══════════════════════════════════════ */
 .lugares-grid {
   display: flex;
-  gap: 16px;
+  gap: 20px;
   justify-content: center;
   flex-wrap: wrap;
 }
 .lugar-card {
   flex: 1;
-  min-width: 200px;
-  max-width: 240px;
-  border: 1px solid rgba(192,128,129,.2);
-  padding: 20px 16px;
+  min-width: 220px;
+  max-width: 260px;
+  border: 1px solid rgba(192, 128, 129, 0.25);
+  padding: 24px 20px;
   background: var(--off);
 }
 .lugar-icon-wrap {
-  width: 80px; height: 80px;
-  background: #f5efef;
+  width: 92px;
+  height: 92px;
+  background: #fbf5f5;
   border-radius: 50%;
   padding: 10px;
-  margin: 0 auto 14px;
+  margin: 0 auto 16px;
+  border: 1.5px solid rgba(208, 175, 88, 0.25);
+  box-shadow: 0 4px 15px rgba(22, 36, 61, 0.04);
 }
 .lugar-nombre {
   font-family: var(--ff-title);
@@ -596,8 +607,17 @@ body {
 .dc-desc { font-family: var(--ff-body); font-size: 15px; color: var(--text-lt); line-height: 1.6; }
 
 /* ══════════════════════════════════════
-   8. TIMELINE
+   8. TIMELINE (CAMINITO)
 ══════════════════════════════════════ */
+.sec-titulo-script {
+  font-family: var(--ff-script);
+  font-size: clamp(48px, 11vw, 64px);
+  color: var(--blush);
+  font-weight: 400;
+  margin-bottom: 28px;
+  line-height: 1;
+}
+
 .timeline-caminito {
   position: relative;
   max-width: 520px;
@@ -759,6 +779,7 @@ body {
     height: 8px;
   }
 }
+
 /* ══════════════════════════════════════
    9. REGALOS
 ══════════════════════════════════════ */
