@@ -232,28 +232,34 @@ body {
    2. REPRODUCTOR
 ══════════════════════════════════════ */
 .player {
-  padding: 18px 32px 20px;
-  background: var(--off);
-  border-bottom: 1px solid rgba(192,128,129,.15);
+  padding: 24px 32px 24px;
+  background: var(--white);
+  border-bottom: 1px solid rgba(208, 175, 88, 0.15);
+  border-top: 1px solid rgba(208, 175, 88, 0.15);
+  box-shadow: 0 4px 15px rgba(22, 36, 61, 0.03);
+  margin: 16px 0;
 }
 .player-label {
   font-family: var(--ff-body);
-  font-style: italic;
-  font-size: 12px;
-  letter-spacing: 1px;
-  color: var(--text-lt);
-  margin-bottom: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 11px;
+  letter-spacing: 2px;
+  color: var(--navy); /* Deep, sharp royal navy */
+  margin-bottom: 16px;
+  opacity: 1;
 }
 .player-track-wrap {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 16px;
+  margin-bottom: 20px;
 }
 .player-track {
   flex: 1;
-  height: 1.5px;
-  background: rgba(192,128,129,.25);
-  border-radius: 2px;
+  height: 3px;
+  background: rgba(201, 138, 139, 0.2); /* Palo rosa muy translúcido */
+  border-radius: 4px;
   position: relative;
   cursor: pointer;
 }
@@ -262,26 +268,42 @@ body {
   left: 0; top: 0;
   height: 100%;
   width: 0%;
-  background: var(--blush);
-  border-radius: 2px;
-  transition: width .15s linear;
+  background: var(--blush); /* Palo rosa */
+  border-radius: 4px;
+  transition: width .1s linear;
 }
 .player-dot {
   position: absolute;
   top: 50%; left: 0%;
-  width: 9px; height: 9px;
-  background: var(--navy);
-  border: 1.5px solid var(--white);
-  border-radius: 50%;
+  width: 24px; height: 24px;
+  background: transparent;
   transform: translate(-50%, -50%);
-  box-shadow: 0 0 0 1.5px var(--blush);
-  transition: left .15s linear;
+  transition: left .1s linear;
   pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
+.heart-dot-icon {
+  width: 17px;
+  height: 17px;
+  color: var(--blush); /* Palo rosa */
+  fill: var(--blush);
+  filter: drop-shadow(0 2px 4px rgba(201, 138, 139, 0.4));
+  animation: heartPulse 1.2s infinite ease-in-out;
+}
+
+@keyframes heartPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+}
+
 .player-time {
   font-family: var(--ff-title);
-  font-size: 10px;
-  color: var(--text-lt);
+  font-size: 11px;
+  letter-spacing: 1px;
+  color: var(--navy); /* Deep, sharp royal navy */
+  font-weight: 600;
   white-space: nowrap;
   flex-shrink: 0;
 }
@@ -289,27 +311,73 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 18px;
-  margin-top: 12px;
+  gap: 22px;
 }
 .pbtn {
-  background: none; border: none; cursor: pointer;
-  font-size: 11px; color: var(--text-lt);
-  letter-spacing: .5px; padding: 4px 8px;
-  transition: color .2s;
-}
-.pbtn:hover { color: var(--navy); }
-.pbtn-play {
-  width: 36px; height: 36px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  color: var(--navy); /* Azul marino */
+  opacity: 0.75;
+  transition: all 0.25s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border-radius: 50%;
-  background: var(--navy);
-  color: var(--gold) !important;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 13px;
-  transition: background .2s, transform .1s;
 }
-.pbtn-play:hover { background: var(--blush); color: var(--white) !important; transform: scale(1.06); }
+.pbtn svg {
+  width: 16px;
+  height: 16px;
+  display: block;
+}
+.pbtn:hover {
+  opacity: 1;
+  transform: scale(1.12);
+  background: rgba(208, 175, 88, 0.08); /* Fondo dorado sutil en hover */
+  color: var(--gold); /* Dorado en hover */
+}
+.pbtn:active {
+  transform: scale(0.95);
+}
 
+/* Active states for toggleable icons */
+.pbtn-shuffle.active,
+.pbtn-repeat.active {
+  opacity: 1;
+  color: var(--gold);
+  filter: drop-shadow(0 0 6px rgba(208, 175, 88, 0.4));
+}
+
+/* Circular play button perfectly centering our symbols with Navy and Gold */
+.pbtn-play {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 2px solid var(--gold); /* Borde dorado */
+  background: var(--navy); /* Fondo azul marino */
+  color: var(--gold); /* Iconos dorados */
+  opacity: 1;
+  box-shadow: 0 4px 10px rgba(22, 36, 61, 0.15);
+  padding: 0;
+}
+.pbtn-play svg {
+  width: 14px;
+  height: 14px;
+  fill: var(--gold); /* Iconos dorados */
+}
+.pbtn-play .icon-play {
+  transform: translateX(1px);
+}
+.pbtn-play:hover {
+  background: var(--gold); /* Intercambio de colores en hover */
+  border-color: var(--gold);
+  opacity: 1;
+  box-shadow: 0 6px 14px rgba(208, 175, 88, 0.4);
+}
+.pbtn-play:hover svg {
+  fill: var(--navy); /* Icono cambia a azul marino */
+}
 /* ══════════════════════════════════════
    SECCIONES BASE
 ══════════════════════════════════════ */
