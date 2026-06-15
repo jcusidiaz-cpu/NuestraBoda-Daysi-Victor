@@ -40,14 +40,41 @@
     <div class="player-track-wrap">
       <div class="player-track" id="track">
         <div class="player-fill" id="fill"></div>
-        <div class="player-dot"  id="dot"></div>
+        <div class="player-dot"  id="dot">
+          <!-- Elegant vector heartbeat SVG instead of a simple dot -->
+          <svg viewBox="0 0 24 24" class="heart-dot-icon">
+            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3c3.08 0 5.5 2.42 5.5 5.5 0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+          </svg>
+        </div>
       </div>
       <span class="player-time" id="tiempo">0:00 / 0:00</span>
     </div>
     <div class="player-btns">
-      <button class="pbtn" onclick="retroceder()">&#9664;&#9664;</button>
-      <button class="pbtn pbtn-play" onclick="togglePlay()" id="playBtn">&#9654;</button>
-      <button class="pbtn" onclick="avanzar()">&#9654;&#9654;</button>
+      <!-- Prev button -->
+      <button class="pbtn pbtn-prev" onclick="retroceder()" aria-label="Retroceder">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M11 18V6l-8.5 6 8.5 6zm.5-6l8.5 6V6l-8.5 6z"/>
+        </svg>
+      </button>
+
+      <!-- Center circular Play/Pause button -->
+      <button class="pbtn pbtn-play" onclick="togglePlay()" id="playBtn" aria-label="Reproducir">
+        <!-- Play Icon -->
+        <svg class="icon-play" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M8 5v14l11-7z"/>
+        </svg>
+        <!-- Pause Icon -->
+        <svg class="icon-pause" viewBox="0 0 24 24" fill="currentColor" style="display: none;">
+          <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+        </svg>
+      </button>
+
+      <!-- Next button -->
+      <button class="pbtn pbtn-next" onclick="avanzar()" aria-label="Avanzar">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M4 18l8.5-6L4 6v12zm9-12v12l8.5-6L13 6z"/>
+        </svg>
+      </button>
     </div>
     <audio id="audio" src="audio/musica.mp3"></audio>
   </div>
