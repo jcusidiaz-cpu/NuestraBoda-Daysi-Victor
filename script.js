@@ -482,3 +482,91 @@ document.addEventListener("DOMContentLoaded", checkAndReplaceBrokenImages);
 setTimeout(checkAndReplaceBrokenImages, 300);
 setTimeout(checkAndReplaceBrokenImages, 1500);
 
+// ══════════════════════════════════════
+// MODAL & COPIADO DE REGALOS
+// ══════════════════════════════════════
+function openGiftModal(option) {
+  const modal = document.getElementById("giftModal");
+  if (!modal) return;
+  
+  // Ocultar todos los sub-contenidos del modal
+  document.querySelectorAll(".gift-modal-inner").forEach(el => {
+    el.classList.add("hidden");
+  });
+  
+  // Mostrar el contenido seleccionado
+  const targetId = `gift-content-${option}`;
+  const targetView = document.getElementById(targetId);
+  if (targetView) {
+    targetView.classList.remove("hidden");
+    modal.classList.add("active");
+    // Desactivar scroll del body principal al estar abierto
+    document.body.style.overflow = "hidden";
+  }
+}
+
+function closeGiftModal() {
+  const modal = document.getElementById("giftModal");
+  if (!modal) return;
+  
+  modal.classList.remove("active");
+  document.body.style.overflow = "";
+}
+
+function handleOutsideClick(event) {
+  const modalOverlay = document.getElementById("giftModal");
+  // Si el click fue exactamente en el fondo oscuro (overlay), cerrar
+  if (event.target === modalOverlay) {
+    closeGiftModal();
+  }
+}
+
+function copyValue(elementId, btnElement) {
+  const textElement = document.getElementById(elementId);
+  if (!textElement) return;
+  
+  // Quitar espacios vacíos del número de cuenta/CCI/teléfono para que sea fácil pegar
+  const rawText = textElement.innerText || textElement.textContent;
+  const textToCopy = rawText.replace(/\s+/g, "");
+  
+  const showFeedback = () => {
+    const span = btnElement.querySelector("span");
+    const originalText = span ? span.textContent : "Copiar";
+    btnElement.classList.add("copied");
+    if (span) span.textContent = "¡Copiado!";
+    
+    setTimeout(() => {
+      btnElement.classList.remove("copied");
+      if (span) span.textContent = originalText;
+    }, 2000);
+  };
+
+  if (navigator.clipboard && window.isSecureContext) {
+    navigator.clipboard.writeText(textToCopy).then(() => {
+      showFeedback();
+    }).catch(() => {
+      fallbackCopy(textToCopy, showFeedback);
+    });
+  } else {
+    fallbackCopy(textToCopy, showFeedback);
+  }
+}
+
+function fallbackCopy(text, callback) {
+  const textArea = document.createElement("textarea");
+  textArea.value = text;
+  textArea.style.position = "fixed";
+  textArea.style.left = "-9999px";
+  textArea.style.top = "-9999px";
+  document.body.appendChild(textArea);
+  textArea.focus();
+  textArea.select();
+  try {
+    document.execCommand("copy");
+    callback();
+  } catch (err) {
+    console.error("No se pudo copiar el texto", err);
+  }
+  document.body.removeChild(textArea);
+}
+
