@@ -231,7 +231,7 @@
        8. ITINERARIO
   ══════════════════════════════ -->
   <section class="sec seq" data-delay="3700">
-    <h2 class="sec-titulo">Programa del dia</h2>
+    <h2 class="sec-titulo">Programa de dia</h2>
     <div class="timeline-caminito">
 
       <!-- Item 1: Icon Left, Text Right -->
@@ -338,40 +338,66 @@
   <section class="sec seq" data-delay="3900">
     <h2 class="sec-titulo">Regalos</h2>
     <p class="regalo-intro">El mejor regalo es que estés presente. Si deseas obsequiarnos, tienes estas opciones:</p>
-    <div class="regalo-grid">
-
-  
-
-  <div class="regalo-item">
-    <p class="regalo-ico">🤵</p>
-    <p class="regalo-label">Víctor</p>
-
-    <p><strong>Interbank</strong><br>
-    8983323432548</p>
-
-    <p><strong>CCI</strong><br>
-    00389801332343254847</p>
-
-    <p><strong>Yape</strong><br>
-    923 539 768</p>
-  </div>
-
-  <div class="regalo-item">
-    <p class="regalo-ico">👰</p>
-    <p class="regalo-label">Daysi</p>
-
-    <p><strong>BCP</strong><br>
-    28576087528054</p>
-
-    <p><strong>CCI</strong><br>
-    00228517608752805455</p>
-
-    <p><strong>Yape</strong><br>
-    955 324 849</p>
-  </div>
     
-  </div>
+    <div class="regalo-options-grid">
       
+      <!-- Option 1: Sobre / Efectivo -->
+      <button class="regalo-option-card" onclick="openGiftModal('sobre')">
+        <div class="regalo-option-icon">
+          <svg viewBox="0 0 24 24" fill="none" class="gift-vector-icon">
+            <path d="M22 6C22 4.9 21.1 4 20 4H4C2.9 4 2 4.9 2 6V18C2 19.1 2.9 20 4 20H20C21.1 20 22 19.1 22 18V6Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+            <path d="M22 6L12 13L2-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M22 6L12 13L2 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="regalo-option-info">
+          <span class="regalo-option-tag">Efectivo</span>
+          <h3 class="regalo-option-title">Sobre de Regalo</h3>
+          <p class="regalo-option-desc">Lluvia de sobres</p>
+        </div>
+        <div class="regalo-option-arrow">✦</div>
+      </button>
+
+      <!-- Option 2: Transferencia Bancaria -->
+      <button class="regalo-option-card" onclick="openGiftModal('transferencia')">
+        <div class="regalo-option-icon">
+          <svg viewBox="0 0 24 24" fill="none" class="gift-vector-icon">
+            <path d="M3 21H21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <path d="M3 10H21V18H3V10Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+            <path d="M12 2L2 10H22L12 2Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+            <path d="M6 14V14.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <path d="M10 14V14.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <path d="M14 14V14.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <path d="M18 14V14.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="regalo-option-info">
+          <span class="regalo-option-tag">Bancos</span>
+          <h3 class="regalo-option-title">Transferencia</h3>
+          <p class="regalo-option-desc">Cuentas bancarias</p>
+        </div>
+        <div class="regalo-option-arrow">✦</div>
+      </button>
+
+      <!-- Option 3: Yape / Plin -->
+      <button class="regalo-option-card" onclick="openGiftModal('yape')">
+        <div class="regalo-option-icon">
+          <svg viewBox="0 0 24 24" fill="none" class="gift-vector-icon">
+            <rect x="5" y="2" width="14" height="20" rx="3" stroke="currentColor" stroke-width="2"/>
+            <line x1="12" y1="18" x2="12" y2="18.01" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+            <path d="M9 6H15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M12 10.5C12 10.5 10 11.5 10 12.5C10 13.5 12 14.5 12 14.5C12 14.5 14 13.5 14 12.5C14 11.5 12 10.5 12 10.5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" fill="currentColor" fill-opacity="0.1" />
+          </svg>
+        </div>
+        <div class="regalo-option-info">
+          <span class="regalo-option-tag">Digital</span>
+          <h3 class="regalo-option-title">Yape o Plin</h3>
+          <p class="regalo-option-desc">Billetera móvil</p>
+        </div>
+        <div class="regalo-option-arrow">✦</div>
+      </button>
+
+    </div>
   </section>
 
   <!-- ══════════════════════════════
@@ -476,6 +502,153 @@
   </div>
 
 </div><!-- /.hoja -->
+
+<!-- VENTANA FLOTANTE (MODAL) PARA REGALOS -->
+<div id="giftModal" class="gift-modal-overlay" onclick="handleOutsideClick(event)">
+  <div class="gift-modal-content">
+    
+    <!-- Botón cerrar (arriba a la derecha) -->
+    <button class="gift-modal-close-btn" onclick="closeGiftModal()" aria-label="Cerrar ventana">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
+    
+    <!-- CONTENIDO 1: SOBRE -->
+    <div id="gift-content-sobre" class="gift-modal-inner hidden">
+      <div class="gift-modal-icon-header">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M22 6C22 4.9 21.1 4 20 4H4C2.9 4 2 4.9 2 6V18C2 19.1 2.9 20 4 20H20C21.1 20 22 19.1 22 18V6Z" stroke="currentColor" stroke-width="2"/><path d="M22 6L12 13L2 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <h3 class="gift-modal-title">Sobre de Regalo</h3>
+      <p class="gift-modal-subtitle">Lluvia de Sobres</p>
+      
+      <p class="gift-modal-body-text">
+        Nuestra boda contará con una urna especial el día del evento en donde podrás depositar tu sobre con tu saludo y obsequio en efectivo.
+      </p>
+      
+      <div class="gift-modal-footer-ornam">
+        <span class="g-line"></span><span class="g-diamond">◆</span><span class="g-line"></span>
+      </div>
+      
+      <p class="gift-modal-thankyou">¡Muchas gracias por acompañarnos!</p>
+    </div>
+
+    <!-- CONTENIDO 2: TRANSFERENCIA -->
+    <div id="gift-content-transferencia" class="gift-modal-inner hidden">
+      <div class="gift-modal-icon-header">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M3 21H21" stroke="currentColor" stroke-width="2"/><path d="M3 10H21V18H3V10Z" stroke="currentColor" stroke-width="2"/><path d="M12 2L2 10H22L12 2Z" stroke="currentColor" stroke-width="2"/></svg>
+      </div>
+      <h3 class="gift-modal-title">Cuentas Bancarias</h3>
+      <p class="gift-modal-subtitle">Transferencias nacionales</p>
+      
+      <div class="gift-modal-scrollable">
+        
+        <!-- Cuenta Víctor -->
+        <div class="gift-card-account">
+          <div class="account-owner-badge">🤵 Víctor (Novio)</div>
+          <p class="account-bank-name">Interbank</p>
+          
+          <div class="field-copy-pair">
+            <div class="field-col">
+              <span class="field-label">Nro de Cuenta</span>
+              <span class="field-num" id="int-v-num">8983323432548</span>
+            </div>
+            <button class="account-copy-btn" onclick="copyValue('int-v-num', this)">
+              <svg viewBox="0 0 14 14" class="copy-tiny-icon" fill="currentColor"><path d="M11 1H3c-.6 0-1 .4-1 1v10h1V2h8V1zm2 3H5c-.6 0-1 .4-1 1v10c0 .6.4 1 1 1h8c.6 0 1-.4 1-1V5c0-.6-.4-1-1-1zm0 11H5V5h8v10z"/></svg>
+              <span>Copiar</span>
+            </button>
+          </div>
+
+          <div class="field-copy-pair">
+            <div class="field-col">
+              <span class="field-label">CCI</span>
+              <span class="field-num" id="int-v-cci">00389801332343254847</span>
+            </div>
+            <button class="account-copy-btn" onclick="copyValue('int-v-cci', this)">
+              <svg viewBox="0 0 14 14" class="copy-tiny-icon" fill="currentColor"><path d="M11 1H3c-.6 0-1 .4-1 1v10h1V2h8V1zm2 3H5c-.6 0-1 .4-1 1v10c0 .6.4 1 1 1h8c.6 0 1-.4 1-1V5c0-.6-.4-1-1-1zm0 11H5V5h8v10z"/></svg>
+              <span>Copiar</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Cuenta Daysi -->
+        <div class="gift-card-account">
+          <div class="account-owner-badge">👰 Daysi (Novia)</div>
+          <p class="account-bank-name">BCP</p>
+          
+          <div class="field-copy-pair">
+            <div class="field-col">
+              <span class="field-label">Nro de Cuenta</span>
+              <span class="field-num" id="bcp-d-num">28576087528054</span>
+            </div>
+            <button class="account-copy-btn" onclick="copyValue('bcp-d-num', this)">
+              <svg viewBox="0 0 14 14" class="copy-tiny-icon" fill="currentColor"><path d="M11 1H3c-.6 0-1 .4-1 1v10h1V2h8V1zm2 3H5c-.6 0-1 .4-1 1v10c0 .6.4 1 1 1h8c.6 0 1-.4 1-1V5c0-.6-.4-1-1-1zm0 11H5V5h8v10z"/></svg>
+              <span>Copiar</span>
+            </button>
+          </div>
+
+          <div class="field-copy-pair">
+            <div class="field-col">
+              <span class="field-label">CCI</span>
+              <span class="field-num" id="bcp-d-cci">00228517608752805455</span>
+            </div>
+            <button class="account-copy-btn" onclick="copyValue('bcp-d-cci', this)">
+              <svg viewBox="0 0 14 14" class="copy-tiny-icon" fill="currentColor"><path d="M11 1H3c-.6 0-1 .4-1 1v10h1V2h8V1zm2 3H5c-.6 0-1 .4-1 1v10c0 .6.4 1 1 1h8c.6 0 1-.4 1-1V5c0-.6-.4-1-1-1zm0 11H5V5h8v10z"/></svg>
+              <span>Copiar</span>
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- CONTENIDO 3: YAPE -->
+    <div id="gift-content-yape" class="gift-modal-inner hidden">
+      <div class="gift-modal-icon-header">
+        <svg viewBox="0 0 24 24" fill="none"><rect x="5" y="2" width="14" height="20" rx="3" stroke="currentColor" stroke-width="2"/><line x1="12" y1="18" x2="12" y2="18.01" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg>
+      </div>
+      <h3 class="gift-modal-title">Yape / Plin</h3>
+      <p class="gift-modal-subtitle">Billeteras digitales</p>
+      
+      <div class="gift-modal-scrollable">
+        
+        <!-- Yape Víctor -->
+        <div class="gift-card-account">
+          <div class="account-owner-badge">🤵 Víctor (Novio)</div>
+          <p class="account-bank-name" style="color: #7b2cbf;">Yape o Plin</p>
+          
+          <div class="field-copy-pair">
+            <div class="field-col">
+              <span class="field-label">Celular</span>
+              <span class="field-num" id="yape-v-num" style="letter-spacing: 1.5px;">923539768</span>
+            </div>
+            <button class="account-copy-btn" onclick="copyValue('yape-v-num', this)">
+              <svg viewBox="0 0 14 14" class="copy-tiny-icon" fill="currentColor"><path d="M11 1H3c-.6 0-1 .4-1 1v10h1V2h8V1zm2 3H5c-.6 0-1 .4-1 1v10c0 .6.4 1 1 1h8c.6 0 1-.4 1-1V5c0-.6-.4-1-1-1zm0 11H5V5h8v10z"/></svg>
+              <span>Copiar</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Yape Daysi -->
+        <div class="gift-card-account">
+          <div class="account-owner-badge">👰 Daysi (Novia)</div>
+          <p class="account-bank-name" style="color: #7b2cbf;">Yape o Plin</p>
+          
+          <div class="field-copy-pair">
+            <div class="field-col">
+              <span class="field-label">Celular</span>
+              <span class="field-num" id="yape-d-num" style="letter-spacing: 1.5px;">955324849</span>
+            </div>
+            <button class="account-copy-btn" onclick="copyValue('yape-d-num', this)">
+              <svg viewBox="0 0 14 14" class="copy-tiny-icon" fill="currentColor"><path d="M11 1H3c-.6 0-1 .4-1 1v10h1V2h8V1zm2 3H5c-.6 0-1 .4-1 1v10c0 .6.4 1 1 1h8c.6 0 1-.4 1-1V5c0-.6-.4-1-1-1zm0 11H5V5h8v10z"/></svg>
+              <span>Copiar</span>
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>
 
 <script src="script.js"></script>
 </body>
