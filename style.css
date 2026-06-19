@@ -419,12 +419,12 @@ body {
   font-family: var(--ff-body);
   font-style: italic;
   font-size: 19px;
+  font-weight: 600; /* ← Cambiado aquí (antes estaba en 500) */
   line-height: 1.95;
   color: var(--text-lt);
   max-width: 440px;
   margin: 0 auto;
 }
-
 /* ══════════════════════════════════════
    4. FAMILIAS
 ══════════════════════════════════════ */
