@@ -784,7 +784,7 @@ body {
 /* ══════════════════════════════════════
    9. REGALOS
 ══════════════════════════════════════ */
-.regalo-intro { font-family: var(--ff-body); font-style: italic; font-size: 15px; color: var(--text-lt); line-height: 1.75; max-width: 400px; margin: 0 auto 24px; }
+.regalo-intro { font-family: var(--ff-body); font-style: italic; font-size: 15px;  font-weight: 600; color: var(--text-lt); line-height: 1.75; max-width: 400px; margin: 0 auto 24px; }
 
 /* ══════════════════════════════════════
    9. REGALOS - CARDS RECTANGULARES & OPCIONES
