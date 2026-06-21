@@ -149,23 +149,53 @@
        5. FECHA + CONTADOR
   ══════════════════════════════ -->
   <section class="sec sec-fecha seq" data-delay="3100">
-    <p class="inv-texto">Nos complace invitarte a nuestra boda</p>
-    <div class="fecha-bloque">
-      <p class="fecha-mes">Julio</p>
-      <p class="fecha-dia">25</p>
-      <p class="fecha-dow">Sábado</p>
-      <p class="fecha-an">2026</p>
-    </div>
-    <div class="ornam dark"><span></span><i>◆</i><span></span></div>
-    <p class="cuenta-label">Faltan</p>
-    <div class="contador">
-      <div class="cd-item"><span id="cd-d">--</span><small>días</small></div>
-      <div class="cd-sep">:</div>
-      <div class="cd-item"><span id="cd-h">--</span><small>hrs</small></div>
-      <div class="cd-sep">:</div>
-      <div class="cd-item"><span id="cd-m">--</span><small>min</small></div>
-      <div class="cd-sep">:</div>
-      <div class="cd-item"><span id="cd-s">--</span><small>seg</small></div>
+    <div class="sec-fecha-inner">
+      <div class="fecha-img-wrap">
+        <img src="img/vd.jpg" alt="Víctor & Daysi" class="fecha-img-circle">
+      </div>
+      <p class="inv-texto">Nos complace invitarte a nuestra boda</p>
+      
+      <div class="fecha-bloque-premium">
+        <div class="fecha-col fecha-col-izq">
+          <p class="fecha-mes-p">Julio</p>
+          <p class="fecha-dow-p">Sábado</p>
+        </div>
+        <div class="fecha-divider"></div>
+        <div class="fecha-col fecha-col-centro">
+          <p class="fecha-dia-p">25</p>
+        </div>
+        <div class="fecha-divider"></div>
+        <div class="fecha-col fecha-col-der">
+          <p class="fecha-an-p">2026</p>
+          <p class="fecha-hora-p">17:00 HRS</p>
+        </div>
+      </div>
+
+      <div class="ornam dark" style="margin: 28px 0 20px;"><span></span><i>◆</i><span></span></div>
+      
+      <p class="cuenta-label">Faltan</p>
+      
+      <div class="contador-premium">
+        <div class="cd-item-premium">
+          <span id="cd-d">--</span>
+          <small>Días</small>
+        </div>
+        <div class="cd-sep-premium">·</div>
+        <div class="cd-item-premium">
+          <span id="cd-h">--</span>
+          <small>Hrs</small>
+        </div>
+        <div class="cd-sep-premium">·</div>
+        <div class="cd-item-premium">
+          <span id="cd-m">--</span>
+          <small>Min</small>
+        </div>
+        <div class="cd-sep-premium">·</div>
+        <div class="cd-item-premium">
+          <span id="cd-s">--</span>
+          <small>Seg</small>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -176,32 +206,46 @@
     <h2 class="sec-titulo">Lugares del Evento</h2>
     <div class="lugares-grid">
 
-      <div class="lugar-card">
+      <div class="lugar-card" onclick="openLugarModal('ceremonia')">
         <div class="lugar-icon-wrap">
           <img src="img/iglesia.png" alt="" class="icon-blush">
         </div>
         <p class="lugar-nombre">Ceremonia Religiosa</p>
         <p class="lugar-dir">Iglesia de La Recoleta<br>Cusco, Perú</p>
-        <a class="lugar-mapa"
-           href="https://maps.app.goo.gl/g1rvAWWHe4KDbAaaA"
-           target="_blank">
-          <img src="img/ubicacion.png" alt="" class="icon-pin">
-          Ver en Google Maps
-        </a>
+        
+        <div class="lugar-actions">
+          <button type="button" class="lugar-action-btn primary" onclick="event.stopPropagation(); openLugarModal('ceremonia')">
+            <span>Ver Protocolo</span>
+          </button>
+          <a class="lugar-action-btn secondary"
+             href="https://maps.app.goo.gl/g1rvAWWHe4KDbAaaA"
+             target="_blank"
+             onclick="event.stopPropagation();">
+            <img src="img/ubicacion.png" alt="" class="icon-pin">
+            <span>Cómo Llegar</span>
+          </a>
+        </div>
       </div>
 
-      <div class="lugar-card">
+      <div class="lugar-card" onclick="openLugarModal('recepcion')">
         <div class="lugar-icon-wrap">
           <img src="img/resepcion.png" alt="" class="icon-blush">
         </div>
         <p class="lugar-nombre">Recepción</p>
         <p class="lugar-dir">Centro de Convenciones Casa Real<br>Av. Huayrurupata 1817</p>
-        <a class="lugar-mapa"
-           href="https://maps.app.goo.gl/rJcaRHcmjVnV8CeN6"
-           target="_blank">
-          <img src="img/ubicacion.png" alt="" class="icon-pin">
-          Ver en Google Maps
-        </a>
+        
+        <div class="lugar-actions">
+          <button type="button" class="lugar-action-btn primary" onclick="event.stopPropagation(); openLugarModal('recepcion')">
+            <span>Ver Protocolo</span>
+          </button>
+          <a class="lugar-action-btn secondary"
+             href="https://maps.app.goo.gl/rJcaRHcmjVnV8CeN6"
+             target="_blank"
+             onclick="event.stopPropagation();">
+            <img src="img/ubicacion.png" alt="" class="icon-pin">
+            <span>Cómo Llegar</span>
+          </a>
+        </div>
       </div>
 
     </div>
@@ -231,7 +275,7 @@
        8. ITINERARIO
   ══════════════════════════════ -->
   <section class="sec seq" data-delay="3700">
-    <h2 class="sec-titulo">Programa de dia</h2>
+    <h2 class="sec-titulo">Programa</h2>
     <div class="timeline-caminito">
 
       <!-- Item 1: Icon Left, Text Right -->
@@ -379,7 +423,7 @@
         <div class="regalo-option-arrow">✦</div>
       </button>
 
-      <!-- Option 3: Yape  -->
+      <!-- Option 3: Yape / Plin -->
       <button class="regalo-option-card" onclick="openGiftModal('yape')">
         <div class="regalo-option-icon">
           <svg viewBox="0 0 24 24" fill="none" class="gift-vector-icon">
@@ -391,7 +435,7 @@
         </div>
         <div class="regalo-option-info">
           <span class="regalo-option-tag">Digital</span>
-          <h3 class="regalo-option-title">Yape</h3>
+          <h3 class="regalo-option-title">Yape o Plin</h3>
           <p class="regalo-option-desc">Billetera móvil</p>
         </div>
         <div class="regalo-option-arrow">✦</div>
@@ -508,7 +552,7 @@
   <div class="gift-modal-content">
     
     <!-- Botón cerrar (arriba a la derecha) -->
-    <button class="gift-modal-close-btn" onclick="closeGiftModal()" aria-label="Cerrar ventana">
+    <button type="button" class="gift-modal-close-btn" onclick="closeGiftModal()" aria-label="Cerrar ventana">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6L6 18M6 6l12 12"/></svg>
     </button>
     
@@ -540,6 +584,34 @@
       <p class="gift-modal-subtitle">Transferencias nacionales</p>
       
       <div class="gift-modal-scrollable">
+        
+        <!-- Cuenta Víctor -->
+        <div class="gift-card-account">
+          <div class="account-owner-badge">🤵 Víctor (Novio)</div>
+          <p class="account-bank-name">Interbank</p>
+          
+          <div class="field-copy-pair">
+            <div class="field-col">
+              <span class="field-label">Nro de Cuenta</span>
+              <span class="field-num" id="int-v-num">8983323432548</span>
+            </div>
+            <button type="button" class="account-copy-btn" onclick="copyValue('int-v-num', this)">
+              <svg viewBox="0 0 14 14" class="copy-tiny-icon" fill="currentColor"><path d="M11 1H3c-.6 0-1 .4-1 1v10h1V2h8V1zm2 3H5c-.6 0-1 .4-1 1v10c0 .6.4 1 1 1h8c.6 0 1-.4 1-1V5c0-.6-.4-1-1-1zm0 11H5V5h8v10z"/></svg>
+              <span>Copiar</span>
+            </button>
+          </div>
+
+          <div class="field-copy-pair">
+            <div class="field-col">
+              <span class="field-label">CCI</span>
+              <span class="field-num" id="int-v-cci">00389801332343254847</span>
+            </div>
+            <button type="button" class="account-copy-btn" onclick="copyValue('int-v-cci', this)">
+              <svg viewBox="0 0 14 14" class="copy-tiny-icon" fill="currentColor"><path d="M11 1H3c-.6 0-1 .4-1 1v10h1V2h8V1zm2 3H5c-.6 0-1 .4-1 1v10c0 .6.4 1 1 1h8c.6 0 1-.4 1-1V5c0-.6-.4-1-1-1zm0 11H5V5h8v10z"/></svg>
+              <span>Copiar</span>
+            </button>
+          </div>
+        </div>
 
         <!-- Cuenta Daysi -->
         <div class="gift-card-account">
@@ -551,9 +623,9 @@
               <span class="field-label">Nro de Cuenta</span>
               <span class="field-num" id="bcp-d-num">28576087528054</span>
             </div>
-            <button class="account-copy-btn" onclick="copyValue('bcp-d-num', this)">
+            <button type="button" class="account-copy-btn" onclick="copyValue('bcp-d-num', this)">
               <svg viewBox="0 0 14 14" class="copy-tiny-icon" fill="currentColor"><path d="M11 1H3c-.6 0-1 .4-1 1v10h1V2h8V1zm2 3H5c-.6 0-1 .4-1 1v10c0 .6.4 1 1 1h8c.6 0 1-.4 1-1V5c0-.6-.4-1-1-1zm0 11H5V5h8v10z"/></svg>
-              
+              <span>Copiar</span>
             </button>
           </div>
 
@@ -562,9 +634,9 @@
               <span class="field-label">CCI</span>
               <span class="field-num" id="bcp-d-cci">00228517608752805455</span>
             </div>
-            <button class="account-copy-btn" onclick="copyValue('bcp-d-cci', this)">
+            <button type="button" class="account-copy-btn" onclick="copyValue('bcp-d-cci', this)">
               <svg viewBox="0 0 14 14" class="copy-tiny-icon" fill="currentColor"><path d="M11 1H3c-.6 0-1 .4-1 1v10h1V2h8V1zm2 3H5c-.6 0-1 .4-1 1v10c0 .6.4 1 1 1h8c.6 0 1-.4 1-1V5c0-.6-.4-1-1-1zm0 11H5V5h8v10z"/></svg>
-           
+              <span>Copiar</span>
             </button>
           </div>
         </div>
@@ -577,7 +649,7 @@
       <div class="gift-modal-icon-header">
         <svg viewBox="0 0 24 24" fill="none"><rect x="5" y="2" width="14" height="20" rx="3" stroke="currentColor" stroke-width="2"/><line x1="12" y1="18" x2="12" y2="18.01" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg>
       </div>
-      <h3 class="gift-modal-title">Yape</h3>
+      <h3 class="gift-modal-title">Yape / Plin</h3>
       <p class="gift-modal-subtitle">Billeteras digitales</p>
       
       <div class="gift-modal-scrollable">
@@ -585,16 +657,16 @@
         <!-- Yape Víctor -->
         <div class="gift-card-account">
           <div class="account-owner-badge">🤵 Víctor (Novio)</div>
-          <p class="account-bank-name" style="color: #7b2cbf;">Yape</p>
+          <p class="account-bank-name" style="color: #7b2cbf;">Yape o Plin</p>
           
           <div class="field-copy-pair">
             <div class="field-col">
               <span class="field-label">Celular</span>
-              <span class="field-num" id="yape-v-num" style="letter-spacing: 1.5px;">960868292</span>
+              <span class="field-num" id="yape-v-num" style="letter-spacing: 1.5px;">923539768</span>
             </div>
-            <button class="account-copy-btn" onclick="copyValue('yape-v-num', this)">
+            <button type="button" class="account-copy-btn" onclick="copyValue('yape-v-num', this)">
               <svg viewBox="0 0 14 14" class="copy-tiny-icon" fill="currentColor"><path d="M11 1H3c-.6 0-1 .4-1 1v10h1V2h8V1zm2 3H5c-.6 0-1 .4-1 1v10c0 .6.4 1 1 1h8c.6 0 1-.4 1-1V5c0-.6-.4-1-1-1zm0 11H5V5h8v10z"/></svg>
-              
+              <span>Copiar</span>
             </button>
           </div>
         </div>
@@ -602,21 +674,105 @@
         <!-- Yape Daysi -->
         <div class="gift-card-account">
           <div class="account-owner-badge">👰 Daysi (Novia)</div>
-          <p class="account-bank-name" style="color: #7b2cbf;">Yape </p>
+          <p class="account-bank-name" style="color: #7b2cbf;">Yape o Plin</p>
           
           <div class="field-copy-pair">
             <div class="field-col">
               <span class="field-label">Celular</span>
-              <span class="field-num" id="yape-d-num" style="letter-spacing: 1.5px;">923539768</span>
+              <span class="field-num" id="yape-d-num" style="letter-spacing: 1.5px;">955324849</span>
             </div>
-            <button class="account-copy-btn" onclick="copyValue('yape-d-num', this)">
+            <button type="button" class="account-copy-btn" onclick="copyValue('yape-d-num', this)">
               <svg viewBox="0 0 14 14" class="copy-tiny-icon" fill="currentColor"><path d="M11 1H3c-.6 0-1 .4-1 1v10h1V2h8V1zm2 3H5c-.6 0-1 .4-1 1v10c0 .6.4 1 1 1h8c.6 0 1-.4 1-1V5c0-.6-.4-1-1-1zm0 11H5V5h8v10z"/></svg>
-            
+              <span>Copiar</span>
             </button>
           </div>
         </div>
 
       </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- VENTANA FLOTANTE (MODAL) PARA DETALLES DE LUGARES -->
+<div id="lugarModal" class="lugar-modal-overlay" onclick="handleLugarOutsideClick(event)">
+  <div class="lugar-modal-content">
+    
+    <!-- Botón cerrar (arriba a la derecha) -->
+    <button type="button" class="lugar-modal-close-btn" onclick="closeLugarModal()" aria-label="Cerrar ventana">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
+    
+    <!-- CONTENIDO: CEREMONIA -->
+    <div id="lugar-content-ceremonia" class="lugar-modal-inner hidden">
+      <div class="lugar-modal-icon-header">
+        <img src="img/iglesia.png" alt="" class="icon-blush" style="width: 32px; height: 32px;">
+      </div>
+      <h3 class="lugar-modal-title">Ceremonia Religiosa</h3>
+      <p class="lugar-modal-subtitle">Iglesia de La Recoleta</p>
+      
+      <div class="lugar-modal-scrollable">
+        <div class="lugar-pautas-container">
+          
+          <div class="lugar-pauta-item">
+            <div class="lugar-pauta-icon">🕒</div>
+            <div class="lugar-pauta-text">
+              <h4>Horario & Puntualidad</h4>
+              <p>Inicia a las <strong>3:30 PM</strong>. Agradecemos llegar unos minutos antes para acomodarse.</p>
+            </div>
+          </div>
+
+          <div class="lugar-pauta-item">
+            <div class="lugar-pauta-icon">🔕</div>
+            <div class="lugar-pauta-text">
+              <h4>Celulares en Silencio</h4>
+              <p>Por favor silenciar su teléfono al ingresar para mantener la solemnidad.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      
+      <div class="lugar-modal-ornamento">
+        <span class="l-line"></span><span class="l-star">✦</span><span class="l-line"></span>
+      </div>
+      <p class="lugar-modal-slogan">"Tu presencia y bendición en este día sagrado significa todo para nosotros."</p>
+    </div>
+
+    <!-- CONTENIDO: RECEPCION -->
+    <div id="lugar-content-recepcion" class="lugar-modal-inner hidden">
+      <div class="lugar-modal-icon-header">
+        <img src="img/resepcion.png" alt="" class="icon-blush" style="width: 32px; height: 32px;">
+      </div>
+      <h3 class="lugar-modal-title">Recepción y Fiesta</h3>
+      <p class="lugar-modal-subtitle">Convenciones Casa Real</p>
+      
+      <div class="lugar-modal-scrollable">
+        <div class="lugar-pautas-container">
+          
+          <div class="lugar-pauta-item">
+            <div class="lugar-pauta-icon">🚪</div>
+            <div class="lugar-pauta-text">
+              <h4>Ingreso Gradual</h4>
+              <p>Le invitamos a ingresar poco a poco de manera tranquila para evitar aglomeraciones en la entrada.</p>
+            </div>
+          </div>
+
+          <div class="lugar-pauta-item">
+            <div class="lugar-pauta-icon">🍽️</div>
+            <div class="lugar-pauta-text">
+              <h4>Toma de Mesas</h4>
+              <p>Por favor, diríjase a su mesa asignada para organizarse cómodamente antes del inicio del protocolo.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      
+      <div class="lugar-modal-ornamento">
+        <span class="l-line"></span><span class="l-star">✦</span><span class="l-line"></span>
+      </div>
+      <p class="lugar-modal-slogan">"¡Prepare sus mejores pasos de baile para celebrar esta maravillosa noche!"</p>
     </div>
 
   </div>
