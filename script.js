@@ -570,3 +570,41 @@ function fallbackCopy(text, callback) {
   document.body.removeChild(textArea);
 }
 
+// ══════════════════════════════════════
+// MODAL DE DETALLES DE LUGARES
+// ══════════════════════════════════════
+function openLugarModal(lugarOption) {
+  const modal = document.getElementById("lugarModal");
+  if (!modal) return;
+  
+  // Ocultar todos los sub-contenidos del modal de lugares
+  document.querySelectorAll(".lugar-modal-inner").forEach(el => {
+    el.classList.add("hidden");
+  });
+  
+  // Mostrar el contenido seleccionado (ceremonia / recepcion)
+  const targetId = `lugar-content-${lugarOption}`;
+  const targetView = document.getElementById(targetId);
+  if (targetView) {
+    targetView.classList.remove("hidden");
+    modal.classList.add("active");
+    // Desactivar scroll del body principal al estar abierto
+    document.body.style.overflow = "hidden";
+  }
+}
+
+function closeLugarModal() {
+  const modal = document.getElementById("lugarModal");
+  if (!modal) return;
+  
+  modal.classList.remove("active");
+  document.body.style.overflow = "";
+}
+
+function handleLugarOutsideClick(event) {
+  const modalOverlay = document.getElementById("lugarModal");
+  if (event.target === modalOverlay) {
+    closeLugarModal();
+  }
+}
+
