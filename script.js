@@ -57,6 +57,7 @@ function updatePlayBtnUI() {
 }
 
 window.addEventListener("load", () => {
+  revisarRSVPGuerdado();
   audio.play()
     .then(() => { updatePlayBtnUI(); })
     .catch(() => { /* navegador bloqueó autoplay */ });
@@ -236,11 +237,78 @@ async function enviar(data) {
       body: JSON.stringify(data)
     });
     // no-cors siempre devuelve opaque → asumimos éxito
-    mostrarEstado("estado-ok");
+    localStorage.setItem("rsvp_confirmed_" + FAMILIA, JSON.stringify(data));
+    revisarRSVPGuerdado();
   } catch (err) {
     console.error(err);
     mostrarEstado("estado-error");
   }
+}
+
+function revisarRSVPGuerdado() {
+  const saved = localStorage.getItem("rsvp_confirmed_" + FAMILIA);
+  if (saved) {
+    try {
+      const data = JSON.parse(saved);
+      document.getElementById("paso-1").classList.add("oculto");
+      document.getElementById("paso-2").classList.add("oculto");
+      document.getElementById("paso-2b").classList.add("oculto");
+      
+      const estadoOk = document.getElementById("estado-ok");
+      estadoOk.classList.remove("oculto");
+      
+      const estadoSub = estadoOk.querySelector(".estado-sub");
+      if (estadoSub) {
+        if (data.asiste === "Sí") {
+          estadoSub.innerHTML = `
+            Ya has confirmado tu asistencia para <strong>${data.cantidad} ${data.cantidad === 1 ? 'persona' : 'personas'}</strong>.<br>
+            Nombres: <em>${data.nombres}</em>.<br>
+            ¡Nos alegra mucho contar contigo!<br>
+            <div style="margin-top: 18px;">
+              <button type="button" onclick="reiniciarRSVP()" style="background: none; border: none; font-family: var(--ff-body); color: var(--gold); text-decoration: underline; cursor: pointer; font-size: 13.5px; font-weight: 700;">¿Deseas cambiar tu respuesta?</button>
+            </div>
+          `;
+        } else {
+          const estadoTitle = estadoOk.querySelector(".estado-titulo");
+          if (estadoTitle) {
+            estadoTitle.textContent = "Respuesta Registrada";
+          }
+          estadoSub.innerHTML = `
+            Registraste que no podías asistir.<br>
+            ¡Gracias por avisarnos!<br>
+            <div style="margin-top: 18px;">
+              <button type="button" onclick="reiniciarRSVP()" style="background: none; border: none; font-family: var(--ff-body); color: var(--gold); text-decoration: underline; cursor: pointer; font-size: 13.5px; font-weight: 700;">¿Deseas cambiar tu respuesta?</button>
+            </div>
+          `;
+        }
+      }
+    } catch (e) {
+      console.error("Error al cargar RSVP guardado:", e);
+    }
+  }
+}
+
+function reiniciarRSVP() {
+  localStorage.removeItem("rsvp_confirmed_" + FAMILIA);
+  // Restablecer el formulario
+  document.getElementById("estado-ok").classList.add("oculto");
+  const estadoTitle = document.getElementById("estado-ok").querySelector(".estado-titulo");
+  if (estadoTitle) {
+    estadoTitle.textContent = "¡Confirmado!";
+  }
+  const estadoSub = document.getElementById("estado-ok").querySelector(".estado-sub");
+  if (estadoSub) {
+    estadoSub.textContent = "Nos alegra mucho contar contigo. ¡Hasta pronto!";
+  }
+  document.getElementById("paso-1").classList.remove("oculto");
+  
+  // Limpiar campos
+  const fTel = document.getElementById("f-tel");
+  if (fTel) fTel.value = "";
+  const fMsg = document.getElementById("f-msg");
+  if (fMsg) fMsg.value = "";
+  const fMsgNo = document.getElementById("f-msg-no");
+  if (fMsgNo) fMsgNo.value = "";
 }
 
 /* ══════════════════════════════════════════════════════════
@@ -607,4 +675,3 @@ function handleLugarOutsideClick(event) {
     closeLugarModal();
   }
 }
-
