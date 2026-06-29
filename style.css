@@ -165,7 +165,7 @@ body {
 ══════════════════════════════════════ */
 .novios-wrap {
   position: relative;
-  width: 260px;          /* ajusta al gusto */
+  width: 280px;          /* Ajustado para el marco */
   margin: 8px auto 0;
   background: transparent;
 }
@@ -176,34 +176,73 @@ body {
   display: block;
   width: 1px;
   height: 28px;
-  background: linear-gradient(to bottom, transparent, #c9a84c);
-  margin: 0 auto;
+  background: linear-gradient(to bottom, transparent, var(--gold));
+  margin: 0 auto 8px; /* Pequeño espacio para separar del marco */
 }
 
-/* La imagen */
-.novios-wrap img {
+/* Marco elegante y coordinado con la invitación */
+.novios-frame {
+  position: relative;
+  background: var(--white);
+  padding: 14px;
+  border: 1.5px solid var(--gold);
+  border-radius: 4px;
+  box-shadow: 
+    0 10px 30px rgba(22, 36, 61, 0.08), 
+    0 2px 8px rgba(208, 175, 88, 0.12),
+    0 0 20px rgba(208, 175, 88, 0.05);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  overflow: hidden;
+}
+
+/* Línea interior punteada estilo "passepartout" de lujo */
+.novios-frame::before {
+  content: '';
+  position: absolute;
+  inset: 6px;
+  border: 1px dashed rgba(208, 175, 88, 0.45);
+  pointer-events: none;
+  border-radius: 2px;
+  z-index: 2;
+}
+
+/* Estrellas decorativas en las esquinas */
+.novios-frame .corner {
+  position: absolute;
+  font-family: var(--ff-title);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--gold);
+  line-height: 1;
+  pointer-events: none;
+  z-index: 3;
+}
+.novios-frame .corner.tl { top: 8px; left: 8px; }
+.novios-frame .corner.tr { top: 8px; right: 8px; }
+.novios-frame .corner.bl { bottom: 8px; left: 8px; }
+.novios-frame .corner.br { bottom: 8px; right: 8px; }
+
+/* La imagen real o el SVG fallback */
+.novios-frame img,
+.novios-frame .icon-blush {
   width: 100%;
   height: auto;
   display: block;
   position: relative;
-  left: 20px;   /* solo la imagen, la línea queda centrada */
+  left: 0;
+  border-radius: 2px;
+  filter: sepia(4%) saturate(95%) blur(1.2px); /* Sutil tono cálido y efecto desenfoque suave */
+  transition: transform 0.4s ease;
+  z-index: 1;
+}
 
-  /* Desvanece la base blanca suavemente → parece flotando */
-  -webkit-mask-image: linear-gradient(
-    to bottom,
-    black 0%,
-    black 72%,
-    transparent 100%
-  );
-  mask-image: linear-gradient(
-    to bottom,
-    black 0%,
-    black 72%,
-    transparent 100%
-  );
-
-  /* Tono cálido para armonizar con la paleta navy/blush/gold */
-  filter: sepia(8%) saturate(90%);
+/* Animación sutil al pasar el cursor */
+.novios-frame:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 
+    0 16px 35px rgba(22, 36, 61, 0.12), 
+    0 4px 12px rgba(208, 175, 88, 0.2),
+    0 0 25px rgba(208, 175, 88, 0.15);
 }
 
 /* Halo dorado sutil debajo */
@@ -214,6 +253,7 @@ body {
   width: 60%;
   margin: -18px auto 0;
   box-shadow: 0 0 24px 12px rgba(201,168,76,.18);
+  display: none; /* Ocultamos el antiguo para evitar duplicidades */
 }
 
 /* ══════════════════════════════════════
