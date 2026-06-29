@@ -231,7 +231,7 @@ body {
   position: relative;
   left: 0;
   border-radius: 2px;
-  filter: sepia(4%) saturate(95%) blur(1.2px); /* Sutil tono cálido y efecto desenfoque suave */
+  filter: sepia(4%) saturate(95%); /* Sutil tono cálido para armonizar */
   transition: transform 0.4s ease;
   z-index: 1;
 }
