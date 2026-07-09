@@ -250,12 +250,9 @@ function revisarRSVPGuerdado() {
   if (saved) {
     try {
       const data = JSON.parse(saved);
-      document.getElementById("paso-1").classList.add("oculto");
-      document.getElementById("paso-2").classList.add("oculto");
-      document.getElementById("paso-2b").classList.add("oculto");
+      mostrarEstado("estado-ok");
       
       const estadoOk = document.getElementById("estado-ok");
-      estadoOk.classList.remove("oculto");
       
       const estadoSub = estadoOk.querySelector(".estado-sub");
       if (estadoSub) {
